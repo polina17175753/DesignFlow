@@ -4,6 +4,9 @@ public sealed class ProjectService(DataStore store)
 {
     public DesignProject Add(string name, string client)
     {
+        ArgumentException.ThrowIfNullOrWhiteSpace(name);
+        ArgumentException.ThrowIfNullOrWhiteSpace(client);
+
         var project = new DesignProject
         {
             Id = store.Data.Projects.Count == 0 ? 1 : store.Data.Projects.Max(p => p.Id) + 1,
