@@ -4,6 +4,10 @@ public sealed class TaskService(DataStore store)
 {
     public DesignTask Add(int projectId, string title)
     {
+        if (store.FindProject(projectId) is null)
+            throw new ArgumentOutOfRangeException(nameof(projectId), "Проект не найден.");
+        ArgumentException.ThrowIfNullOrWhiteSpace(title);
+
         var task = new DesignTask
         {
             Id = store.Data.Tasks.Count == 0 ? 1 : store.Data.Tasks.Max(t => t.Id) + 1,
