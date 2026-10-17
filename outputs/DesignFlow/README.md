@@ -36,14 +36,14 @@ git config --global user.name "Ваше Имя"
 git config --global user.email "ваш-email@example.com"
 ```
 
-Создайте пустой репозиторий на GitHub, затем подключите его (подставьте адрес своего репозитория):
+Репозиторий `polina17175753/DesignFlow` создан и связан с локальным проектом как `origin`. Первоначальная публикация ветки `master` выполнена:
 
 ```powershell
 git remote add origin https://github.com/ВАШ-АККАУНТ/DesignFlow.git
 git push -u origin master
 ```
 
-Репозиторий опубликован на GitHub, а пользователь `@cimon-png` принял приглашение. Локально подготовлены ветки `feature/projects`, `feature/tasks`, `feature/payments`, `final`; они уже объединены в `master`. Чтобы опубликовать их вместе с финальным состоянием, выполните:
+Репозиторий опубликован на GitHub, а пользователь `@cimon-png` принял приглашение. Ветки `feature/projects`, `feature/tasks`, `feature/payments` и `final` объединены в `master` и отправлены на GitHub. Последняя синхронизация обновила `master` с `4f42fb3` до `d6c326d`. Для повторной отправки изменений используйте:
 
 ```powershell
 git push origin master feature/projects feature/tasks feature/payments final
