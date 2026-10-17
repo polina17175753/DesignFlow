@@ -28,7 +28,7 @@ dotnet run
 
 ## Git и GitHub
 
-Локальный Git-репозиторий проекта находится в папке `ns`, а исходники DesignFlow — в `outputs/DesignFlow`. Поэтому для команд Git откройте PowerShell в `C:\Users\Полина\Documents\Codex\2026-10-17\ns` (или перейдите туда командой ниже). Начальный коммит уже создан. Если настраиваете проект на другом компьютере, начните с `git init -b master` и начального коммита.
+Локальный Git-репозиторий проекта находится в папке `ns`, а исходники DesignFlow — в `outputs/DesignFlow`. Для команд Git откройте PowerShell в `C:\Users\Полина\Documents\Codex\2026-10-17\ns`.
 
 ```powershell
 Set-Location "$env:USERPROFILE\Documents\Codex\2026-10-17\ns"
@@ -43,37 +43,20 @@ git remote add origin https://github.com/ВАШ-АККАУНТ/DesignFlow.git
 git push -u origin master
 ```
 
-Добавьте одногруппника в **Settings → Collaborators**. Для демонстрации командной разработки создайте рабочие ветки, вносите изменения и фиксируйте их коммитами:
+Репозиторий опубликован на GitHub, а пользователь `@cimon-png` принял приглашение. Локально подготовлены ветки `feature/projects`, `feature/tasks`, `feature/payments`, `final`; они уже объединены в `master`. Чтобы опубликовать их вместе с финальным состоянием, выполните:
 
 ```powershell
-git switch -c feature/projects
-git add .
-git commit -m "Добавлено управление проектами"
-git push -u origin feature/projects
-
-git switch master
-git switch -c feature/tasks
-# внесите отдельное изменение в функциональность задач
-git add .
-git commit -m "Добавлено управление задачами"
-git push -u origin feature/tasks
-
-git switch master
-git switch -c feature/payments
-# внесите отдельное изменение в функциональность платежей
-git add .
-git commit -m "Добавлен учёт платежей"
-git push -u origin feature/payments
-
-git switch master
-git pull
-git switch -c final
-git merge feature/projects
-git merge feature/tasks
-git merge feature/payments
-git switch master
-git merge final
-git push origin master
+git push origin master feature/projects feature/tasks feature/payments final
 ```
 
-Начальный локальный коммит подготовлен в ветке `master`. Публикация на GitHub, приглашение одногруппника и функциональные коммиты в трёх ветках ещё не выполнены: для этого нужны созданный удалённый репозиторий и участие второго разработчика.
+Второму разработчику нужно клонировать репозиторий в отдельную папку и отправить собственное изменение в отдельной ветке, чтобы показать командную работу:
+
+```powershell
+git clone https://github.com/polina17175753/DesignFlow.git DesignFlow-cimon
+cd DesignFlow-cimon
+git switch -c feature/collaborator
+# внесите согласованное изменение в проект
+git add .
+git commit -m "Изменение от второго разработчика"
+git push -u origin feature/collaborator
+```
