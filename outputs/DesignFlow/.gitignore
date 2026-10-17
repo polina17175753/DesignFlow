@@ -3,3 +3,9 @@ obj/
 designflow-data.json
 *.user
 *.suo
+
+# Локальные материалы оформления курсового отчёта
+Отчёт.md
+Подробный_отчет_DesignFlow.docx
+Подробный_отчет_DesignFlow.md
+Черновик_отчета_DesignFlow.docx
