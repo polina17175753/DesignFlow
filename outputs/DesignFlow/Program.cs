@@ -7,24 +7,41 @@ var payments = new PaymentService(store);
 
 while (true)
 {
-    Console.Clear();
-    Console.WriteLine("╔══════════════════════════════════════════╗");
-    Console.WriteLine("║              DESIGNFLOW                  ║");
-    Console.WriteLine("║   Система автоматизации работы дизайнера ║");
-    Console.WriteLine("╚══════════════════════════════════════════╝");
-    Console.WriteLine("1. Управление проектами");
-    Console.WriteLine("2. Управление задачами");
-    Console.WriteLine("3. Учёт платежей");
-    Console.WriteLine("0. Выход");
-    Console.Write("Выберите пункт меню: ");
-
-    switch (Console.ReadLine()?.Trim())
+    switch (ChooseMainMenuItem())
     {
-        case "1": ProjectMenu(); break;
-        case "2": TaskMenu(); break;
-        case "3": PaymentMenu(); break;
-        case "0": return;
-        default: Pause("Неизвестный пункт меню."); break;
+        case 0: ProjectMenu(); break;
+        case 1: TaskMenu(); break;
+        case 2: PaymentMenu(); break;
+        case 3: return;
+    }
+}
+
+int ChooseMainMenuItem()
+{
+    string[] items = ["Управление проектами", "Управление задачами", "Учёт платежей", "Выход"];
+    var selected = 0;
+
+    while (true)
+    {
+        Console.Clear();
+        Console.WriteLine("╔══════════════════════════════════════════╗");
+        Console.WriteLine("║              DESIGNFLOW                  ║");
+        Console.WriteLine("║   Система автоматизации работы дизайнера ║");
+        Console.WriteLine("╚══════════════════════════════════════════╝");
+        Console.WriteLine("▼ Выберите раздел (↑/↓, Enter):");
+        Console.WriteLine("┌──────────────────────────────────────────┐");
+
+        for (var i = 0; i < items.Length; i++)
+        {
+            var marker = i == selected ? "›" : " ";
+            Console.WriteLine($"│ {marker} {items[i],-39}│");
+        }
+
+        Console.WriteLine("└──────────────────────────────────────────┘");
+        var key = Console.ReadKey(intercept: true).Key;
+        if (key == ConsoleKey.UpArrow) selected = (selected + items.Length - 1) % items.Length;
+        else if (key == ConsoleKey.DownArrow) selected = (selected + 1) % items.Length;
+        else if (key == ConsoleKey.Enter) return selected;
     }
 }
 
